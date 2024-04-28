@@ -1,0 +1,126 @@
+/* Set background color and font for the entire page */
+body {
+  background-color: #383842;
+  font-family: 'Times New Roman', serif;
+  color: #ffffff; /* Updated to white to default all text to white */
+  padding: 20px;
+}
+
+/* Style for main headings */
+h1 {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+th {
+  color: #ffffff;
+}
+
+/* Remove default list styling and adjust padding */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style for list items */
+li {
+  background-color: #202020;
+  width: 400px;
+  margin-bottom: 5px;
+  padding: 10px;
+  border: 1px solid #ffffff;
+}
+
+/* Style for links */
+a {
+  color: #5fecff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Hover effect for links */
+a:hover {
+  text-decoration: underline;
+}
+
+/* Style for input field container */
+.input-field {
+  display: flex;
+  width: 400px;
+  flex-direction: column; /* Align items vertically */
+  margin-bottom: 20px; /* Increase space between rows for uniformity */
+}
+
+/* Style for labels within input field */
+.input-field label {
+  color: white; /* Set label color to white */
+  margin-bottom: 5px; /* Space between label and input */
+}
+
+/* Style for matrix input boxes */
+.matrix-input {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Adjust spacing below the table */
+#matrix {
+  margin-bottom: 20px;
+}
+
+/* Style for buttons */
+button {
+  margin-right: 10px;
+  margin-bottom: 20px; /* Increase space for uniformity */
+}
+
+table.existing-data {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+
+table.existing-data td:nth-child(1),
+table.existing-data td:nth-child(2) {
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(0, 0, 0);
+}
+
+.matrix-delete {
+  display: block;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.info-icon {
+  cursor: pointer;
+  margin-left: 5px;
+  color: #5fecff;
+  font-size: 0.5em;
+  font-weight: normal;
+}
+
+.info-box {
+  position: absolute;
+  top: 700px; /* Ensure units are specified */
+  left: 500px;
+  width: 400px;
+  height: 160px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  background-color: white;
+}
+
+.info-box.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}

@@ -1,0 +1,75 @@
+extends layout
+
+block content
+  .container
+    //- Container to keep title and info icon inline
+    div.title-container
+      h1 Matrix Row Reduction Calculator
+        //- Information icon with click event to toggle the info box
+        span.info-icon(onclick="toggleInfoBox()") Toggle Instructions
+
+    //- Hidden info box with usage instructions
+    .info-box.hidden
+      p
+        | Fill matrix cells with numbers; empty cells default to zero. <br><br>
+        | Using a 0 in the first cell returns a null matrix (known bug). <br><br>
+        | Submit for row reduction, and view results below.<br><br>
+        | Use the delete button to remove results. (index kinda broken)
+
+    form(action="/rref" method="post")
+      button(type="button" onclick="main.addRow()") Add Row
+      button(type="button" onclick="main.addColumn()") Add Column
+      button(type="button" onclick="main.removeRow()") Remove Row
+      button(type="button" onclick="main.removeColumn()") Remove Column
+
+      table#matrix
+        - for (var i = 0; i < 3; i++)
+          tr
+            - for (var j = 0; j < 4; j++)
+              td
+                input(type="text" name=`matrix[${i}][${j}]` class="matrix-input")
+      button(type="submit") Submit
+
+    //- Display existing data and delete button for each row
+    if data
+      //- h2 Existing Data
+      table.existing-data
+        thead
+          tr
+            th Matrix (A)
+            th RREF Matrix (rrefA)
+            //- th Action
+        tbody
+          each row in data.reverse()
+            tr
+              td
+                //- Use inline JavaScript to dynamically render the MathJax for A and rrefA
+                script.
+                  var A = !{JSON.stringify(JSON.parse(row.A))};
+                  var rrefA = !{JSON.stringify(JSON.parse(row.rrefA))};
+                  // Render Matrix A
+                  var matrixALatex = '\\[';
+                  matrixALatex += 'A_{#{row.row_number}} = \\begin{pmatrix}';
+                  A.forEach(function(row) {
+                    matrixALatex += row.join(' & ') + '\\\\';
+                  });
+                  matrixALatex += '\\end{pmatrix}';
+                  matrixALatex += '\\]';
+                  document.write(matrixALatex);
+
+              td
+                script.
+                  // Render RREF Matrix
+                  var matrixRrefALatex = '\\[';
+                  matrixRrefALatex += '\\text{rref}(A_{#{row.row_number}}) = \\begin{pmatrix}';
+                  rrefA.forEach(function(row) {
+                    matrixRrefALatex += row.join(' & ') + '\\\\';
+                  });
+                  matrixRrefALatex += '\\end{pmatrix}';
+                  matrixRrefALatex += '\\]';
+                  document.write(matrixRrefALatex);
+              td
+                form(action=`/delete/${row.id}` method="post" class="matrix-delete")
+                  button(type="submit") Delete
+
+    a(href='/') Back to homepage

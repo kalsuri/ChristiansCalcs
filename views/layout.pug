@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Christian's College Math Calculators
+    link(rel="stylesheet", href="/css/style.css")
+    script(src="https://polyfill.io/v3/polyfill.min.js?features=es6")
+    script(id="MathJax-script", async, src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js")
+    link(rel="icon", href="/img/calc.ico", type="image/x-icon")
+    link(rel="shortcut icon", href="/img/calc.ico", type="image/x-icon")
+  body
+    block content
+    script.
+      function toggleInfoBox() {
+        var infoBox = document.querySelector('.info-box');
+        infoBox.classList.toggle('show');
+      }
+
+    script(src="/js/main.js")

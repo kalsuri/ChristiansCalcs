@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .container
+    h1 Partial Differential Equation Calculator
+    form#pdeForm(method="POST", action="/pde-calculator")
+      .input-field
+        label(for="function_of_x") \( u(x, 0) = \) (Initial Condition)
+        input#function_of_x(type="text", name="function_of_x", placeholder="sin(2*pi*x) + cos(pi*x)", required)
+      .input-field
+        label(for="start") \( x_i = \) (Initial x value)
+        input#start(type="text", name="start", placeholder="0", required)
+      .input-field
+        label(for="end") \( x_f = \) (Final x value)
+        input#end(type="text", name="end", placeholder="1", required)
+      .input-field
+        label(for="N") Number of Fourier Coefficients (N)
+        input#N(type="text", name="N", placeholder="10", required)
+      .input-field
+        label(for="alpha") Damping Factor (α)
+        input#alpha(type="text", name="alpha", placeholder="0.1", required)
+      button(type="submit") Calculate
+
+    // Display the result or a status message
+    p#status Enter data to calculate the result.
+
+    // Link back to the homepage
+    a(href='/') Back to homepage
